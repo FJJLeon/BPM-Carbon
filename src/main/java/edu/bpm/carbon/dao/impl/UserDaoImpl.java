@@ -2,16 +2,19 @@ package edu.bpm.carbon.dao.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sun.corba.se.spi.ior.ObjectKey;
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.dao.UserDao;
 import edu.bpm.carbon.entity.User;
 import edu.bpm.carbon.utils.httputils.HttpUtil;
+import edu.bpm.carbon.utils.httputils.Map2Param;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 // for what
 @Repository
@@ -23,29 +26,20 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> queryUser(Map<String, Object> params) {
-        StringBuilder sb = new StringBuilder();
-        Iterator<Map.Entry<String, Object>> entries = params.entrySet().iterator();
-        while (entries.hasNext()) {
-            Map.Entry<String, Object> e = entries.next();
-            sb.append(Constant.USER_RESOURCE + "." + e.getKey())
-                    .append("=")
-                    .append(e.getValue());
-            if (entries.hasNext()) {
-                sb.append("&");
-            }
-        }
+        List<User> result = new ArrayList<>();
 
-        log.info(sb.toString());
+        String rmpParam = Map2Param.genRmpParam(Constant.USER_RESOURCE, params);
 
-        JSONObject queryResp = HttpUtil.httpGetJSON(RMP_URL, sb.toString());
+        log.info(rmpParam);
+
+        JSONObject queryResp = HttpUtil.httpGetJSON(RMP_URL, rmpParam);
         JSONArray userFound = queryResp.getJSONArray(Constant.USER_RESOURCE);
         if (userFound == null) {
-            return null;
+            return result;
         }
 
-        JSONObject jsonUser = null;
-        User u = null;
-        List<User> result = new ArrayList<>();
+        JSONObject jsonUser;
+        User u;
         for (int i = 0; i < userFound.size(); i++) {
             jsonUser = userFound.getJSONObject(i);
             u = JSONObject.toJavaObject(jsonUser, User.class);
@@ -58,7 +52,9 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User checkUser(String username, String password) {
 
-        String param = String.format("Testuser.username=%s&Testuser.password=%s", username, password);
+        String param = String.format("%s.%s=%s&%s.%s=%s",
+                Constant.USER_RESOURCE, Constant.USER_NAME, username,
+                Constant.USER_RESOURCE, Constant.USER_PASSWORD, password);
         JSONObject checkUser = HttpUtil.httpGetJSON(RMP_URL, param);
         /** response json
          * {
