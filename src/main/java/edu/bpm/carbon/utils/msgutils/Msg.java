@@ -1,6 +1,6 @@
 package edu.bpm.carbon.utils.msgutils;
 
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 
 public class Msg {
     private int status;
