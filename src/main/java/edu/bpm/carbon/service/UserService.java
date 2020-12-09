@@ -7,4 +7,5 @@ public interface UserService {
 
     Msg checkUser(String username, String password);
 
+    Msg register(String username, String password, int age, int gender);
 }
