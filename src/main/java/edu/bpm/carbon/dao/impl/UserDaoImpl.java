@@ -21,9 +21,16 @@ import java.util.Map;
 @Slf4j
 public class UserDaoImpl implements UserDao {
 
-    @Value("${rmp.url}")
-    String RMP_URL;
-
+    @Value("${rmp.project.url}")
+    String PROJECT_URL;
+    @Value("${rmp.resource.user.url}")
+    String USER_URL;
+    /**
+        // cannot write this, property and final
+        String TEST1_URL = PROJECT_URL + Constant.USER_RESOURCE + "/";
+        String TEST2_URL = Constant.USER_RESOURCE;
+        String TEST3_URL = PROJECT_URL + TEST2_URL;
+    */
     @Override
     public List<User> queryUser(Map<String, Object> params) {
         List<User> result = new ArrayList<>();
@@ -31,8 +38,9 @@ public class UserDaoImpl implements UserDao {
         String rmpParam = Map2Param.genRmpParam(Constant.USER_RESOURCE, params);
 
         log.info(rmpParam);
+        log.info(USER_URL);
 
-        JSONObject queryResp = HttpUtil.httpGetJSON(RMP_URL, rmpParam);
+        JSONObject queryResp = HttpUtil.httpGetJSON(USER_URL, rmpParam);
         JSONArray userFound = queryResp.getJSONArray(Constant.USER_RESOURCE);
         if (userFound == null) {
             return result;
@@ -55,7 +63,7 @@ public class UserDaoImpl implements UserDao {
         String param = String.format("%s.%s=%s&%s.%s=%s",
                 Constant.USER_RESOURCE, Constant.USER_NAME, username,
                 Constant.USER_RESOURCE, Constant.USER_PASSWORD, password);
-        JSONObject checkUser = HttpUtil.httpGetJSON(RMP_URL, param);
+        JSONObject checkUser = HttpUtil.httpGetJSON(USER_URL, param);
         /** response json
          * {
          *     "Testuser": [
@@ -95,7 +103,7 @@ public class UserDaoImpl implements UserDao {
         postParam.put(Constant.USER_AGE, age);
         postParam.put(Constant.USER_GENDER, gender);
 
-        JSONObject postResponse = HttpUtil.httpPostJSON(RMP_URL, postParam);
+        JSONObject postResponse = HttpUtil.httpPostJSON(USER_URL, postParam);
         log.info(postResponse.toString());
         /** response json
          * {

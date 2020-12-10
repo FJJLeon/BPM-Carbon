@@ -1,5 +1,7 @@
 package edu.bpm.carbon.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class User {
 
     private int id;
