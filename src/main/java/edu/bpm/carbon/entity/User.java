@@ -1,12 +1,14 @@
 package edu.bpm.carbon.entity;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class User {
 
-    private int id;
+    private long id;
 
-    private int userid;
+    private long userid;
 
     private String username;
 
@@ -18,19 +20,19 @@ public class User {
 
     private UserDesc userdesc;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getUserid() {
+    public long getUserid() {
         return userid;
     }
 
-    public void setUserid(int userid) {
+    public void setUserid(long userid) {
         this.userid = userid;
     }
 
@@ -76,14 +78,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userid=" + userid +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
-                ", gender=" + gender +
-                ", userdesc=" + userdesc +
-                '}';
+        return JSON.toJSONString(this);
     }
 }

@@ -41,6 +41,7 @@ public class HttpUtil {
      *      URL所代表远程资源的响应结果，以 JSON 形式返回
      */
     public static JSONObject httpGetJSON(String url, String param) {
+        log.info("HttpGetJSON: url[{}], param[{}]", url, param);
         CloseableHttpClient httpClient = null;
         CloseableHttpResponse response = null;
         String respString = "";
@@ -102,6 +103,7 @@ public class HttpUtil {
      *      URL所代表远程资源的响应结果，以 JSON 形式返回
      */
     public static JSONObject httpPostJSON(String url, Map<String, Object> paramMap) {
+        log.info("httpPostJSON: url[{}], paramMap[{}]", url, paramMap.toString());
         CloseableHttpClient httpClient = null;
         CloseableHttpResponse httpResponse = null;
         String respString = "";

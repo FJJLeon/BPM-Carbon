@@ -31,7 +31,8 @@ public class TravelRecordServiceImpl implements TravelRecordService {
     TravelRecordDao travelRecordDao;
 
     @Override
-    public Msg startTravel(long userid, String toolType) {
+    public Msg startTravel(long userid, String vehicleType) {
+        log.info("startTravel: userid[{}], vehicleType[{}]", userid, vehicleType);
         // make start time
         Date datetime = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -44,7 +45,7 @@ public class TravelRecordServiceImpl implements TravelRecordService {
         }
         User u = userList.get(0);
         // dao create
-        TravelRecord tr = travelRecordDao.startTravelRecord(userid, u.getUsername(), toolType, startTime);
+        TravelRecord tr = travelRecordDao.startTravelRecord(userid, u.getUsername(), vehicleType, startTime);
         JSONObject jsonObject = (JSONObject) JSONObject.toJSON(tr);
 
         return MsgUtil.makeMsg(MsgUtil.SUCCESS, "开始出行", jsonObject);

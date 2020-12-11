@@ -21,24 +21,26 @@ import java.util.Map;
 @Slf4j
 public class UserDaoImpl implements UserDao {
 
-    @Value("${rmp.project.url}")
-    String PROJECT_URL;
     @Value("${rmp.resource.user.url}")
     String USER_URL;
     /**
-        // cannot write this, property and final
+        // TODO cannot get, property[no] and final[yes]
         String TEST1_URL = PROJECT_URL + Constant.USER_RESOURCE + "/";
         String TEST2_URL = Constant.USER_RESOURCE;
         String TEST3_URL = PROJECT_URL + TEST2_URL;
     */
+
+    /**
+     * 普通查询用户方法
+     * @param params Map 可以是用户查询可用的任意字段
+     * @return 查询得到的用户列表
+     */
     @Override
     public List<User> queryUser(Map<String, Object> params) {
         List<User> result = new ArrayList<>();
 
         String rmpParam = Map2Param.genRmpParam(Constant.USER_RESOURCE, params);
-
-        log.info(rmpParam);
-        log.info(USER_URL);
+        log.info("queryUser: {}", rmpParam);
 
         JSONObject queryResp = HttpUtil.httpGetJSON(USER_URL, rmpParam);
         JSONArray userFound = queryResp.getJSONArray(Constant.USER_RESOURCE);

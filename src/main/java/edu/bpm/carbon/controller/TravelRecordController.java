@@ -33,7 +33,6 @@ public class TravelRecordController {
         Assert.notNull(travelRecord.getVehicletype(), "travel record vehicle type missing");
 
         Msg msg = travelRecordService.startTravel(travelRecord.getUserid(), travelRecord.getVehicletype());
-
         return msg;
     }
 }

@@ -1,5 +1,8 @@
 package edu.bpm.carbon.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.dao.UserDao;
 import edu.bpm.carbon.entity.User;
@@ -33,7 +36,7 @@ public class UserServiceImpl implements UserService {
             return MsgUtil.makeMsg(MsgCode.ERROR);
         }
         else {
-            return MsgUtil.makeMsg(MsgCode.SUCCESS);
+            return MsgUtil.makeMsg(MsgCode.SUCCESS, "登录成功", (JSONObject) JSONObject.toJSON(u));
         }
     }
 
@@ -58,5 +61,15 @@ public class UserServiceImpl implements UserService {
         else {
             return MsgUtil.makeMsg(MsgCode.SUCCESS);
         }
+    }
+
+    @Override
+    public Msg queryUser(Map<String, Object> params) {
+        log.info("queryUser: {}", params.toString());
+        List<User> userList = userDao.queryUser(params);
+
+        String s = JSON.toJSONString(userList);
+        //JSONObject jsonObject = JSONObject.parseObject(s);
+        return MsgUtil.makeMsg(MsgCode.SUCCESS, s);
     }
 }

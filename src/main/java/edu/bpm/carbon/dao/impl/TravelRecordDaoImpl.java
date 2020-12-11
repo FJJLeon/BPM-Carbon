@@ -21,10 +21,8 @@ import java.util.Map;
 @Slf4j
 public class TravelRecordDaoImpl implements TravelRecordDao {
 
-    @Value("${rmp.project.url}")
-    String PROJECT_URL;
     @Value("${rmp.resource.travelrecord.url}")
-    String TR_URL = PROJECT_URL;
+    String TR_URL;
 
     @Override
     public List<TravelRecord> queryTravelRecord(Map<String, Object> params) {
@@ -33,7 +31,8 @@ public class TravelRecordDaoImpl implements TravelRecordDao {
 
     @Override
     public TravelRecord startTravelRecord(long userid, String username, String vehicleType, String startTime) {
-        // construct param
+        log.info("startTravelRecord: userid[{}],username[{}],vehicleType[{}],startTime[{}]", userid, username, vehicleType, startTime);
+        // construct param map
         Map<String, Object> postParam = new HashMap<String, Object>(){{
            put(Constant.TR_USERID, userid);
            put(Constant.TR_USERNAME, username);
@@ -44,14 +43,19 @@ public class TravelRecordDaoImpl implements TravelRecordDao {
         JSONObject postResponse = HttpUtil.httpPostJSON(TR_URL, postParam);
         log.info(postResponse.toString());
         // transfer to JavaObject
-
+        /** TODO,fastjson resolve field missing, such as "starttime"
         String test = postResponse.toString();
         TravelRecord testTR = new Gson().fromJson(test, TravelRecord.class);
         TravelRecord travelRecord = JSONObject.toJavaObject(postResponse, TravelRecord.class);
 
         log.info("Gson: " + testTR.toString());
         log.info("fastJson: " + travelRecord.toString());
-        return testTR;
+        */
+
+        String s = postResponse.toString();
+        TravelRecord travelRecord = new Gson().fromJson(s, TravelRecord.class);
+
+        return travelRecord;
     }
 
     @Override
