@@ -2,6 +2,7 @@ package edu.bpm.carbon.dao.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.dao.UserDao;
 import edu.bpm.carbon.entity.User;
@@ -52,7 +53,9 @@ public class UserDaoImpl implements UserDao {
         User u;
         for (int i = 0; i < userFound.size(); i++) {
             jsonUser = userFound.getJSONObject(i);
-            u = JSONObject.toJavaObject(jsonUser, User.class);
+            // u = JSONObject.toJavaObject(jsonUser, User.class);
+            // TODO, Must use Gson, or some field missing[userTravelRecord.id&starttime&endtime]
+            u = new Gson().fromJson(jsonUser.toString(), User.class);
             result.add(u);
         }
 
@@ -121,5 +124,27 @@ public class UserDaoImpl implements UserDao {
         User user = JSONObject.toJavaObject(postResponse, User.class);
 
         return user;
+    }
+
+    @Override
+    public User putUser(User user) {
+        log.info("putUser: {}", user.toString());
+
+        Map<String, Object> putParam = new HashMap<String, Object>() {{
+            put(Constant.USER_ID, user.getId());
+            put(Constant.USER_NAME, user.getUsername());
+            put(Constant.USER_PASSWORD, user.getPassword());
+            put(Constant.USER_AGE, user.getAge());
+            put(Constant.USER_GENDER, user.getGender());
+            put(Constant.USER_USERDESC, user.getUserdesc());
+            put(Constant.USer_TRAVELRECORDS, user.getUsertravelrecords());
+        }};
+        // put request
+        String putURL = USER_URL + "/" + user.getId();
+        JSONObject putResponse = HttpUtil.httpPutJSON(putURL, putParam);
+        log.info("putResponse: {}", putResponse.toString());
+
+        User result = new Gson().fromJson(putResponse.toString(), User.class);
+        return result;
     }
 }

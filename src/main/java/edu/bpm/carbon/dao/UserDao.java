@@ -12,4 +12,6 @@ public interface UserDao {
     User checkUser(String username, String password);
 
     User register(String username, String password, int age, int gender);
+
+    User putUser(User user);
 }

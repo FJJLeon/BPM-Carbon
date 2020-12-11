@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.util.List;
+
 public class User {
 
     private long id;
@@ -19,6 +21,8 @@ public class User {
     private int gender;
 
     private UserDesc userdesc;
+
+    private List<TravelRecord> usertravelrecords;
 
     public long getId() {
         return id;
@@ -74,6 +78,18 @@ public class User {
 
     public void setUserdesc(UserDesc userdesc) {
         this.userdesc = userdesc;
+    }
+
+    public List<TravelRecord> getUsertravelrecords() {
+        return usertravelrecords;
+    }
+
+    public void setUsertravelrecords(List<TravelRecord> usertravelrecords) {
+        this.usertravelrecords = usertravelrecords;
+    }
+
+    public void addTravelrecords(TravelRecord travelRecord) {
+        this.usertravelrecords.add(travelRecord);
     }
 
     @Override

@@ -11,6 +11,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -41,7 +42,7 @@ public class HttpUtil {
      *      URL所代表远程资源的响应结果，以 JSON 形式返回
      */
     public static JSONObject httpGetJSON(String url, String param) {
-        log.info("HttpGetJSON: url[{}], param[{}]", url, param);
+        log.info("HttpGetJSON: GET url[{}], param[{}]", url, param);
         CloseableHttpClient httpClient = null;
         CloseableHttpResponse response = null;
         String respString = "";
@@ -103,7 +104,7 @@ public class HttpUtil {
      *      URL所代表远程资源的响应结果，以 JSON 形式返回
      */
     public static JSONObject httpPostJSON(String url, Map<String, Object> paramMap) {
-        log.info("httpPostJSON: url[{}], paramMap[{}]", url, paramMap.toString());
+        log.info("httpPostJSON: POST url[{}], paramMap[{}]", url, paramMap.toString());
         CloseableHttpClient httpClient = null;
         CloseableHttpResponse httpResponse = null;
         String respString = "";
@@ -172,4 +173,84 @@ public class HttpUtil {
         return result;
     }
 
+
+    /**
+     * 向指定URL发送PUT方法的请求
+     *
+     * @param url
+     *            发送请求的URL
+     * @param paramMap
+     *            请求体，请求参数为 key、value 对应的 Map
+     * @return
+     *      URL所代表远程资源的响应结果，以 JSON 形式返回
+     */
+    public static JSONObject httpPutJSON(String url, Map<String, Object> paramMap) {
+        log.info("httpPutJSON: PUT url[{}], paramMap[{}]", url, paramMap.toString());
+        CloseableHttpClient httpClient = HttpClients.createDefault();;
+        CloseableHttpResponse httpResponse = null;
+        String respString = "";
+        JSONObject result = new JSONObject();
+
+        // 创建httpClient实例
+        httpClient = HttpClients.createDefault();
+        // 创建httpPost远程连接实例
+        HttpPut httpPut = new HttpPut(url);
+
+        // 配置请求参数实例
+        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(35000)// 设置连接主机服务超时时间
+                .setConnectionRequestTimeout(35000)// 设置连接请求超时时间
+                .setSocketTimeout(60000)// 设置读取数据连接超时时间
+                .build();
+        // 为httpPost实例设置配置
+        httpPut.setConfig(requestConfig);
+
+        // 设置请求头
+        httpPut.addHeader("Content-type","application/json; charset=utf-8");
+        httpPut.setHeader("Accept", "application/json");
+        // 封装post请求参数
+        JSONObject jsonParam = new JSONObject();
+        for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
+            String k = entry.getKey();
+            // 不能是 String，存在需要放 数字 类型的情况
+            Object v = entry.getValue();
+            jsonParam.put(k, v);
+        }
+
+        log.info(jsonParam.toString());
+
+        try {
+            // 为httpPost设置封装好的请求参数
+            httpPut.setEntity(new StringEntity(jsonParam.toString(), StandardCharsets.UTF_8));
+            // httpClient对象执行post请求,并返回响应参数对象
+            httpResponse = httpClient.execute(httpPut);
+            // 从响应对象中获取响应内容
+            HttpEntity entity = httpResponse.getEntity();
+            respString = EntityUtils.toString(entity);
+
+            // 将字符串转换为 JSONObject 返回
+            result = JSONObject.parseObject(respString);
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // 关闭资源
+            if (null != httpResponse) {
+                try {
+                    httpResponse.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (null != httpClient) {
+                try {
+                    httpClient.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
 }

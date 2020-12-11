@@ -25,12 +25,8 @@ public interface TravelRecordDao {
 
     /**
      * 结束出行，修改，PUT
-     * @param id 对应的开始出行时新建的记录 id
-     * @param userid 该记录发起用户
-     * @param toolType 用户所使用的出行工具类别
-     * @param startTime 用户开始出行的时间
-     * @param endTime 用户结束出行的时间
+     * @param travelRecord 希望修改的 TravelRecord
      * @return 修改后的 TravelRecord
      */
-    TravelRecord endTravelRecord(long id, long userid, String username, String toolType, String startTime, String endTime);
+    TravelRecord putTravelRecord(TravelRecord travelRecord);
 }

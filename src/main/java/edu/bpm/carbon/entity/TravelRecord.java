@@ -19,6 +19,8 @@ public class TravelRecord {
 
     private String username;
 
+    private int credit;
+
     public TravelRecord(long userid, String vehicletype, int isfinished) {
         this.userid = userid;
         this.vehicletype = vehicletype;
@@ -79,6 +81,14 @@ public class TravelRecord {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
     }
 
     @Override

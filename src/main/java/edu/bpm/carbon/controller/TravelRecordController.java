@@ -27,12 +27,24 @@ public class TravelRecordController {
 
     @PostMapping(value = "/startTravel", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Msg startTravel(@RequestBody TravelRecord travelRecord) {
-        log.info(travelRecord.toString());
+        log.info("startTravel: {}", travelRecord.toString());
 
         Assert.notNull(travelRecord.getUserid(), "travel record userid missing");
         Assert.notNull(travelRecord.getVehicletype(), "travel record vehicle type missing");
 
         Msg msg = travelRecordService.startTravel(travelRecord.getUserid(), travelRecord.getVehicletype());
+        return msg;
+    }
+
+    @PostMapping(value = "/endTravel", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Msg endTravel(@RequestBody TravelRecord travelRecord) {
+        log.info("endTravel: {}", travelRecord.toString());
+
+        Assert.notNull(travelRecord.getId(), "travel record id missing");
+        Assert.notNull(travelRecord.getUserid(), "travel userid missing");
+
+        Msg msg = travelRecordService.endTravel(travelRecord.getId(), travelRecord.getUserid());
+
         return msg;
     }
 }

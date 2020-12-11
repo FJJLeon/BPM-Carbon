@@ -6,6 +6,6 @@ public interface TravelRecordService {
 
     Msg startTravel(long userid, String toolType);
 
-    Msg endTravel(long recordID, long userid);
+    Msg endTravel(long travelRecordID, long userid);
 
 }
