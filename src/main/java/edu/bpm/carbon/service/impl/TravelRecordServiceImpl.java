@@ -86,10 +86,23 @@ public class TravelRecordServiceImpl implements TravelRecordService {
         // TODO, gain credit
         Date start = TimeUtil.rmpSDF2Date(origin.getStarttime());
         Date end = TimeUtil.rmpSDF2Date(origin.getEndtime());
-        origin.setCredit(creditService.gainCredit(start, end, origin.getVehicletype()));
-        // dao put
+        int creditGained = creditService.gainCredit(start, end, origin.getVehicletype());
+        origin.setCredit(creditGained);
+        // travel record dao put
         TravelRecord tr = travelRecordDao.putTravelRecord(origin);
         JSONObject jsonObject = (JSONObject) JSONObject.toJSON(tr);
+
+        // update user credit
+        List<User> userList = userDao.queryUser(new HashMap<String, Object>(){{put(Constant.USER_ID, userid);}});
+        if (userList.isEmpty()) {
+            log.warn("userid: {} not exist", userid);
+            return MsgUtil.makeMsg(MsgCode.ERROR, "用户id不存在");
+        }
+        User u = userList.get(0);
+        u.addCredit(creditGained);
+        // user dao put
+        User updatedU = userDao.putUser(u);
+        log.info("endTravel updated user: {}", updatedU.toString());
 
         return MsgUtil.makeMsg(MsgCode.SUCCESS, "结束出行", jsonObject);
     }

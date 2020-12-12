@@ -136,6 +136,7 @@ public class UserDaoImpl implements UserDao {
             put(Constant.USER_PASSWORD, user.getPassword());
             put(Constant.USER_AGE, user.getAge());
             put(Constant.USER_GENDER, user.getGender());
+            put(Constant.USER_CREDIT, user.getCredit());
             put(Constant.USER_USERDESC, user.getUserdesc());
             put(Constant.USer_TRAVELRECORDS, user.getUsertravelrecords());
         }};

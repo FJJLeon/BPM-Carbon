@@ -20,6 +20,8 @@ public class User {
 
     private int gender;
 
+    private int credit;
+
     private UserDesc userdesc;
 
     private List<TravelRecord> usertravelrecords;
@@ -70,6 +72,18 @@ public class User {
 
     public void setGender(int gender) {
         this.gender = gender;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
+
+    public void addCredit(int creditGained) {
+        this.credit += creditGained;
     }
 
     public UserDesc getUserdesc() {
