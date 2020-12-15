@@ -79,7 +79,6 @@ public class TravelRecordDaoImpl implements TravelRecordDao {
 
     @Override
     public TravelRecord putTravelRecord(TravelRecord travelRecord) {
-        String putURL = TR_URL + "/" + travelRecord.getId();
         log.info("putTravelRecord: [{}]", travelRecord.toString());
         // construct param map
         Map<String, Object> putParam = new HashMap<String, Object>(){{
@@ -93,6 +92,7 @@ public class TravelRecordDaoImpl implements TravelRecordDao {
             put(Constant.TR_CREDIT, travelRecord.getCredit());
         }};
         // put request
+        String putURL = TR_URL + travelRecord.getId();
         JSONObject putResponse = HttpUtil.httpPutJSON(putURL, putParam);
         // transfer to JavaObject
         //TravelRecord result = JSONObject.toJavaObject(putResponse, TravelRecord.class);

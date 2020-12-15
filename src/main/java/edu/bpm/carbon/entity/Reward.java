@@ -18,6 +18,11 @@ public class Reward {
 
     private String image;
 
+    public void exchange(int quantity) {
+        this.inventory -= quantity;
+        this.exchanged += quantity;
+    }
+
     public long getId() {
         return id;
     }

@@ -85,7 +85,8 @@ public class RewardDaoImpl implements RewardDao {
             put(Constant.REWARD_IMAGE, reward.getImage());
         }};
         // put request
-        JSONObject putResponse = HttpUtil.httpPutJSON(REWARD_URL, postParam);
+        String putURL = REWARD_URL + reward.getId();
+        JSONObject putResponse = HttpUtil.httpPutJSON(putURL, postParam);
         log.info(putResponse.toString());
         // transfer to JavaObject
         Reward result = new Gson().fromJson(putResponse.toString(), Reward.class);

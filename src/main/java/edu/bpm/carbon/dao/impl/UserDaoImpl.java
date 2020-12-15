@@ -133,10 +133,11 @@ public class UserDaoImpl implements UserDao {
             put(Constant.USER_GENDER, user.getGender());
             put(Constant.USER_CREDIT, user.getCredit());
             put(Constant.USER_USERDESC, user.getUserdesc());
-            put(Constant.USer_TRAVELRECORDS, user.getUsertravelrecords());
+            put(Constant.USER_TRAVELRECORDS, user.getUsertravelrecords());
+            put(Constant.USER_EXCHANGERECORDS, user.getUserexchanges());
         }};
         // put request
-        String putURL = USER_URL + "/" + user.getId();
+        String putURL = USER_URL + user.getId();
         JSONObject putResponse = HttpUtil.httpPutJSON(putURL, putParam);
         log.info("putResponse: {}", putResponse.toString());
 

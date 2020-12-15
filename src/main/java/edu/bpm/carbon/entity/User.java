@@ -3,6 +3,7 @@ package edu.bpm.carbon.entity;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import edu.bpm.carbon.service.ExchangeService;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class User {
     private UserDesc userdesc;
 
     private List<TravelRecord> usertravelrecords;
+
+    private List<ExchangeRecord> userexchanges;
 
     public long getId() {
         return id;
@@ -104,6 +107,18 @@ public class User {
 
     public void addTravelrecords(TravelRecord travelRecord) {
         this.usertravelrecords.add(travelRecord);
+    }
+
+    public List<ExchangeRecord> getUserexchanges() {
+        return userexchanges;
+    }
+
+    public void setUserexchanges(List<ExchangeRecord> userexchanges) {
+        this.userexchanges = userexchanges;
+    }
+
+    public void addExchangeRecord(ExchangeRecord exchangeRecord) {
+        this.userexchanges.add(exchangeRecord);
     }
 
     @Override
