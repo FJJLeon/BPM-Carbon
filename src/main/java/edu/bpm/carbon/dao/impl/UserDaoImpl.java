@@ -31,11 +31,6 @@ public class UserDaoImpl implements UserDao {
         String TEST3_URL = PROJECT_URL + TEST2_URL;
     */
 
-    /**
-     * 普通查询用户方法
-     * @param params Map 可以是用户查询可用的任意字段
-     * @return 查询得到的用户列表
-     */
     @Override
     public List<User> queryUser(Map<String, Object> params) {
         List<User> result = new ArrayList<>();

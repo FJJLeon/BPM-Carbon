@@ -24,4 +24,15 @@ public class Constant {
     public static final String VEHICLETYPE_BIKE = "bike";
     public static final String VEHICLETYPE_BUS = "bus";
     public static final String VEHICLETYPE_SUBWAY = "subway";
+
+    public static final String REWARD_RESOURCE = "Reward";
+    public static final String REWARD_ID = "id";
+    public static final String REWARD_NAME = "name";
+    public static final String REWARD_CREDIT = "credit";
+    public static final String REWARD_INVENTORY = "inventory";
+    public static final String REWARD_EXCHANGED = "exchanged";
+    public static final String REWARD_PRICE = "price";
+    public static final String REWARD_IMAGE = "image";
+
+
 }
