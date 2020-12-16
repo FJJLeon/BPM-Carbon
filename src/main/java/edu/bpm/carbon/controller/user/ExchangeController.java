@@ -1,7 +1,8 @@
-package edu.bpm.carbon.controller;
+package edu.bpm.carbon.controller.user;
 
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.entity.ExchangeRecord;
+import edu.bpm.carbon.entity.Reward;
 import edu.bpm.carbon.service.ExchangeService;
 import edu.bpm.carbon.utils.msgutils.Msg;
 import lombok.extern.slf4j.Slf4j;
@@ -42,5 +43,15 @@ public class ExchangeController {
 
         return msg;
     }
+
+    @GetMapping(value = "/getRewards")
+    public Msg userGetReward() {
+        log.info("userGetReward");
+
+        Msg msg = exchangeService.queryReward(new HashMap<>());
+
+        return msg;
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package edu.bpm.carbon.controller;
+package edu.bpm.carbon.controller.user;
 
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.entity.TravelRecord;

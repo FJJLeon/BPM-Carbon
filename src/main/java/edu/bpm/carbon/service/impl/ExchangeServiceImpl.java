@@ -101,4 +101,16 @@ public class ExchangeServiceImpl implements ExchangeService {
 
         return MsgUtil.makeMsg(MsgCode.SUCCESS, "兑换成功", (JSONObject) JSONObject.toJSON(result));
     }
+
+    @Override
+    public Msg queryReward(Map<String, Object> params) {
+        log.info("queryReward: params[{}]", params.toString());
+
+        List<Reward> rewards = rewardDao.queryReward(params);
+
+        JSONObject data = new JSONObject();
+        data.put("Rewards", rewards);
+
+        return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
+    }
 }

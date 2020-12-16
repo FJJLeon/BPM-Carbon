@@ -22,4 +22,11 @@ public interface ExchangeService {
      * @return 兑换成功与否的 Msg
      */
     Msg makeExchange(long userid, long rewardid, int quantity);
+
+    /**
+     * 普通查询奖励物品
+     * @param params Map 形式的参数
+     * @return 查询结果消息
+     */
+    Msg queryReward(Map<String, Object> params);
 }

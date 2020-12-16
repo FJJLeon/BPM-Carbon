@@ -1,4 +1,4 @@
-package edu.bpm.carbon.controller;
+package edu.bpm.carbon.controller.user;
 
 import ch.qos.logback.core.joran.spi.InterpretationContext;
 import edu.bpm.carbon.dao.UserDao;
