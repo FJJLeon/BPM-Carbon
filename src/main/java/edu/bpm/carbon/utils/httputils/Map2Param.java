@@ -22,7 +22,8 @@ public class Map2Param {
 
     public static String genRmpParam(String resource, Map<String, Object> params) {
         if (resource == null || params == null) {
-            log.warn("Generate Param Missing");
+            // seems right condition for no params
+            log.warn("Generate Param Empty");
             return "";
         }
 

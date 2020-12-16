@@ -1,6 +1,6 @@
 package edu.bpm.carbon.controller;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.entity.ExchangeRecord;
 import edu.bpm.carbon.service.ExchangeService;
 import edu.bpm.carbon.utils.msgutils.Msg;
@@ -8,10 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/user")
@@ -30,6 +29,16 @@ public class ExchangeController {
         Assert.isTrue(er.getQuantity() != 0, "Exchange quantity missing");
 
         Msg msg = exchangeService.makeExchange(er.getUserid(), er.getRewardid(), er.getQuantity());
+
+        return msg;
+    }
+
+    @PostMapping(value = "/queryExchange", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Msg userQueryExchange(@RequestBody ExchangeRecord er) {
+        long userid = er.getUserid();
+        log.info("userQueryExchange: userid=[{}]", userid);
+
+        Msg msg = exchangeService.queryExchangeRecord(new HashMap<String, Object>(){{put(Constant.ER_USERID, userid);}});
 
         return msg;
     }

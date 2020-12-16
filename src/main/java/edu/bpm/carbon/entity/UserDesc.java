@@ -3,7 +3,7 @@ package edu.bpm.carbon.entity;
 
 public class UserDesc {
 
-    private int id;
+    private long id;
 
     private String university;
 
@@ -11,11 +11,11 @@ public class UserDesc {
 
     private String lab;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

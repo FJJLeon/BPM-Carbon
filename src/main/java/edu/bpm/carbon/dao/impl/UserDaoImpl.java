@@ -87,7 +87,8 @@ public class UserDaoImpl implements UserDao {
         JSONArray userFound = checkUser.getJSONArray("Testuser");
 
         if (userFound != null && userFound.size() == 1) {
-            return JSONObject.toJavaObject(userFound.getJSONObject(0), User.class);
+            JSONObject jsonUser = userFound.getJSONObject(0);
+            return new Gson().fromJson(jsonUser.toString(), User.class);
         }
         else {
             return new User();
@@ -116,7 +117,7 @@ public class UserDaoImpl implements UserDao {
          *     "gender": 1
          * }
          * */
-        User user = JSONObject.toJavaObject(postResponse, User.class);
+        User user = new Gson().fromJson(postResponse.toString(), User.class);
 
         return user;
     }
@@ -132,6 +133,7 @@ public class UserDaoImpl implements UserDao {
             put(Constant.USER_AGE, user.getAge());
             put(Constant.USER_GENDER, user.getGender());
             put(Constant.USER_CREDIT, user.getCredit());
+            put(Constant.USER_ISTRAVELING, user.getIstraveling());
             put(Constant.USER_USERDESC, user.getUserdesc());
             put(Constant.USER_TRAVELRECORDS, user.getUsertravelrecords());
             put(Constant.USER_EXCHANGERECORDS, user.getUserexchanges());

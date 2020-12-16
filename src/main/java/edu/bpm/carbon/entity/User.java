@@ -23,6 +23,8 @@ public class User {
 
     private int credit;
 
+    private int istraveling;
+
     private UserDesc userdesc;
 
     private List<TravelRecord> usertravelrecords;
@@ -37,13 +39,7 @@ public class User {
         this.id = id;
     }
 
-    public long getUserid() {
-        return userid;
-    }
 
-    public void setUserid(long userid) {
-        this.userid = userid;
-    }
 
     public String getUsername() {
         return username;
@@ -87,6 +83,14 @@ public class User {
 
     public void addCredit(int creditGained) {
         this.credit += creditGained;
+    }
+
+    public int getIstraveling() {
+        return istraveling;
+    }
+
+    public void setIstraveling(int istraveling) {
+        this.istraveling = istraveling;
     }
 
     public UserDesc getUserdesc() {

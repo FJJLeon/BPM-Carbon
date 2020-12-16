@@ -11,6 +11,7 @@ public class Constant {
     public static final String USER_USERDESC = "userdesc";
     public static final String USER_TRAVELRECORDS = "usertravelrecords";
     public static final String USER_EXCHANGERECORDS = "userexchanges";
+    public static final String USER_ISTRAVELING = "istraveling";
 
     // TR = TravelRecord
     public static final String TR_RESOURCE = "Travelrecord";
@@ -43,8 +44,9 @@ public class Constant {
     public static final String ER_USERNAME = "username";
     public static final String ER_REWARDID = "rewardid";
     public static final String ER_QUANTITY = "quantity";            // 兑换该奖励的数量
-    public static final String ER_REWARDUNIT = "rewardunit";        // 该奖励单件所需积分
-    public static final String ER_CREDITCOST = "creditcost";        // 该兑换所用的积分 = rewardunit * quantity
+    public static final String ER_REWARDUNIT = "unitcredit";        // 该奖励单件所需积分
+    public static final String ER_CREDITCOST = "totalcredit";        // 该兑换所用的积分 = rewardunit * quantity
     public static final String ER_EXCHANGETIMEd = "exchangetime";   // 兑换时间
     public static final String ER_REWARDNAME = "rewardname";
+    public static final String ER_REWARDINFO = "rewardinfo";
 }

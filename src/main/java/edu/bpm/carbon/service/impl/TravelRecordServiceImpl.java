@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -36,6 +37,18 @@ public class TravelRecordServiceImpl implements TravelRecordService {
 
     @Autowired
     CreditService creditService;
+
+    @Override
+    public Msg queryExchangeRecord(Map<String, Object> params) {
+        log.info("queryExchangeRecord: params[{}]", params.toString());
+
+        List<TravelRecord> travelRecords = travelRecordDao.queryTravelRecord(params);
+
+        JSONObject data = new JSONObject();
+        data.put("TravelRecords", travelRecords);
+
+        return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
+    }
 
     @Override
     public Msg startTravel(long userid, String vehicleType) {
@@ -54,6 +67,8 @@ public class TravelRecordServiceImpl implements TravelRecordService {
         // travel record dao create
         TravelRecord tr = travelRecordDao.startTravelRecord(userid, u.getUsername(), vehicleType, startTime);
         JSONObject jsonObject = (JSONObject) JSONObject.toJSON(tr);
+        // start travel flag
+        u.setIstraveling(1);
         // user dao update
         u.addTravelrecords(tr);
         User updateU = userDao.putUser(u);
@@ -100,6 +115,8 @@ public class TravelRecordServiceImpl implements TravelRecordService {
         }
         User u = userList.get(0);
         u.addCredit(creditGained);
+        // end travel flag
+        u.setIstraveling(0);
         // user dao put
         User updatedU = userDao.putUser(u);
         log.info("endTravel updated user: {}", updatedU.toString());

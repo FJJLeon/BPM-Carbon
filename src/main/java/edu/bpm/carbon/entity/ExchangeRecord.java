@@ -14,13 +14,15 @@ public class ExchangeRecord {
 
     private int quantity;
 
-    private int rewardunit;
+    private int unitcredit;
 
-    private int creditcost;
+    private int totalcredit;
 
     private String exchangetime;
 
     private String rewardname;
+
+    private Reward rewardinfo;
 
     @Override
     public String toString() {
@@ -67,20 +69,20 @@ public class ExchangeRecord {
         this.quantity = quantity;
     }
 
-    public int getRewardunit() {
-        return rewardunit;
+    public int getUnitcredit() {
+        return unitcredit;
     }
 
-    public void setRewardunit(int rewardunit) {
-        this.rewardunit = rewardunit;
+    public void setUnitcredit(int unitcredit) {
+        this.unitcredit = unitcredit;
     }
 
-    public int getCreditcost() {
-        return creditcost;
+    public int getTotalcredit() {
+        return totalcredit;
     }
 
-    public void setCreditcost(int creditcost) {
-        this.creditcost = creditcost;
+    public void setTotalcredit(int totalcredit) {
+        this.totalcredit = totalcredit;
     }
 
     public String getExchangetime() {
@@ -97,5 +99,13 @@ public class ExchangeRecord {
 
     public void setRewardname(String rewardname) {
         this.rewardname = rewardname;
+    }
+
+    public Reward getRewardinfo() {
+        return rewardinfo;
+    }
+
+    public void setRewardinfo(Reward rewardinfo) {
+        this.rewardinfo = rewardinfo;
     }
 }

@@ -1,5 +1,6 @@
 package edu.bpm.carbon.controller;
 
+import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.entity.TravelRecord;
 import edu.bpm.carbon.service.TravelRecordService;
 import edu.bpm.carbon.utils.msgutils.Msg;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -44,6 +46,16 @@ public class TravelRecordController {
         Assert.notNull(travelRecord.getUserid(), "travel userid missing");
 
         Msg msg = travelRecordService.endTravel(travelRecord.getId(), travelRecord.getUserid());
+
+        return msg;
+    }
+
+    @PostMapping(value = "/queryTravel", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Msg userQueryTravels(@RequestBody TravelRecord tr) {
+        long userid = tr.getUserid();
+        log.info("userQueryTravels: userid=[{}]", userid);
+
+        Msg msg = travelRecordService.queryExchangeRecord(new HashMap<String, Object>(){{put(Constant.TR_USERID, userid);}});
 
         return msg;
     }

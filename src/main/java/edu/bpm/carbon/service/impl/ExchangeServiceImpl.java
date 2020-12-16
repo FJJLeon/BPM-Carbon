@@ -32,11 +32,18 @@ public class ExchangeServiceImpl implements ExchangeService {
     RewardDao rewardDao;
 
     @Autowired
-    ExchangeRewardDao exchangeRewardDaoDao;
+    ExchangeRewardDao exchangeRewardDao;
 
     @Override
     public Msg queryExchangeRecord(Map<String, Object> params) {
-        return null;
+        log.info("queryExchangeRecord: params[{}]", params.toString());
+
+        List<ExchangeRecord> exchangeRecords = exchangeRewardDao.queryExchangeRecord(params);
+
+        JSONObject data = new JSONObject();
+        data.put("ExchangeRecords", exchangeRecords);
+
+        return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
     }
 
     @Override
@@ -75,11 +82,12 @@ public class ExchangeServiceImpl implements ExchangeService {
         er.setUsername(u.getUsername());
         er.setRewardid(rewardid);
         er.setQuantity(quantity);
-        er.setRewardunit(reward.getCredit());
-        er.setCreditcost(creditneed);
+        er.setUnitcredit(reward.getCredit());
+        er.setTotalcredit(creditneed);
         er.setExchangetime(TimeUtil.getTimeRmpFormat());
         er.setRewardname(reward.getName());
-        ExchangeRecord result = exchangeRewardDaoDao.postExchangeRecord(er);
+        er.setRewardinfo(reward);
+        ExchangeRecord result = exchangeRewardDao.postExchangeRecord(er);
         log.info("makeExchange success: [{}]", result.toString());
         // 更新用户积分，添加对应记录
         u.setCredit(u.getCredit() - creditneed);

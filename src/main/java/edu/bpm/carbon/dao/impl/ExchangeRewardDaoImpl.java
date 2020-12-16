@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.dao.ExchangeRewardDao;
 import edu.bpm.carbon.entity.ExchangeRecord;
-import edu.bpm.carbon.entity.Reward;
 import edu.bpm.carbon.utils.httputils.HttpUtil;
 import edu.bpm.carbon.utils.httputils.Map2Param;
 import lombok.extern.slf4j.Slf4j;
@@ -58,10 +57,11 @@ public class ExchangeRewardDaoImpl implements ExchangeRewardDao {
             put(Constant.ER_USERNAME, er.getUsername());
             put(Constant.ER_REWARDID, er.getRewardid());
             put(Constant.ER_QUANTITY, er.getQuantity());
-            put(Constant.ER_REWARDUNIT, er.getRewardunit());
-            put(Constant.ER_CREDITCOST, er.getCreditcost());
+            put(Constant.ER_REWARDUNIT, er.getUnitcredit());
+            put(Constant.ER_CREDITCOST, er.getTotalcredit());
             put(Constant.ER_EXCHANGETIMEd, er.getExchangetime());
             put(Constant.ER_REWARDNAME, er.getRewardname());
+            put(Constant.ER_REWARDINFO, er.getRewardinfo());
         }};
         // post request
         JSONObject postResponse = HttpUtil.httpPostJSON(ER_URL, postParam);
@@ -82,10 +82,11 @@ public class ExchangeRewardDaoImpl implements ExchangeRewardDao {
             put(Constant.ER_USERNAME, er.getUsername());
             put(Constant.ER_REWARDID, er.getRewardid());
             put(Constant.ER_QUANTITY, er.getQuantity());
-            put(Constant.ER_REWARDUNIT, er.getRewardunit());
-            put(Constant.ER_CREDITCOST, er.getCreditcost());
+            put(Constant.ER_REWARDUNIT, er.getUnitcredit());
+            put(Constant.ER_CREDITCOST, er.getTotalcredit());
             put(Constant.ER_EXCHANGETIMEd, er.getExchangetime());
             put(Constant.ER_REWARDNAME, er.getRewardname());
+            put(Constant.ER_REWARDINFO, er.getRewardinfo());
         }};
         // put request
         String putURL = ER_URL + er.getId();

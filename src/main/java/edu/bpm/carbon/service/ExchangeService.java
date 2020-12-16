@@ -6,6 +6,11 @@ import java.util.Map;
 
 public interface ExchangeService {
 
+    /**
+     * 普通查询兑换记录
+     * @param params Map 形式的参数
+     * @return 查询结果消息
+     */
     Msg queryExchangeRecord(Map<String, Object> params);
 
     /**
