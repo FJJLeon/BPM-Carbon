@@ -49,4 +49,26 @@ public class Constant {
     public static final String ER_EXCHANGETIMEd = "exchangetime";   // 兑换时间
     public static final String ER_REWARDNAME = "rewardname";
     public static final String ER_REWARDINFO = "rewardinfo";
+
+    // COM = Company
+    public static final String COM_RESOURCE = "Company";
+    public static final String COM_NAME = "name";
+    public static final String COM_TYPE = "type";
+    public static final String COM_ADDRESS = "address";
+    public static final String COM_PHONE = "phone";
+    public static final String COM_REMAINCE = "remaincarbonemission";
+    public static final String COM_PENDINGORDER = "pendingorder";
+    public static final String COM_ACORDERS = "acceptorders";
+    public static final String COM_RJORDERS = "rejectorders";
+
+    // CO = Carbonorder
+    public static final String CARBOD_RESOURCE = "Carbonorder";
+    public static final String CARBOD_COMPID = "companyid";
+    public static final String CARBOD_AMOUNT = "amount";
+    public static final String CARBOD_UNITPRICE = "unitprice";
+    public static final String CARBOD_STATE = "state";
+    public static final String CARBOD_CREATETIME = "createtime";
+    public static final String CARBOD_REVIEWTIME = "reviewtime";
+    public static final String CARBOD_FROM = "fromcompany";
+
 }
