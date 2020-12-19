@@ -8,7 +8,7 @@ public class CarbonOrder {
 
     private long companyid;
 
-    private Company company;
+    private Company fromcompany;
 
     private long amount;
 
@@ -38,12 +38,12 @@ public class CarbonOrder {
         this.companyid = companyid;
     }
 
-    public Company getCompany() {
-        return company;
+    public Company getFromcompany() {
+        return fromcompany;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setFromcompany(Company fromcompany) {
+        this.fromcompany = fromcompany;
     }
 
     public long getAmount() {

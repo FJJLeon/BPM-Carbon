@@ -75,7 +75,7 @@ public class RewardDaoImpl implements RewardDao {
     public Reward putReward(Reward reward) {
         log.info("putReward: [{}]", reward.toString());
         // construct param map
-        Map<String, Object> postParam = new HashMap<String, Object>(){{
+        Map<String, Object> putParam = new HashMap<String, Object>(){{
             put(Constant.REWARD_ID, reward.getId());
             put(Constant.REWARD_NAME, reward.getName());
             put(Constant.REWARD_CREDIT, reward.getCredit());
@@ -86,7 +86,7 @@ public class RewardDaoImpl implements RewardDao {
         }};
         // put request
         String putURL = REWARD_URL + reward.getId();
-        JSONObject putResponse = HttpUtil.httpPutJSON(putURL, postParam);
+        JSONObject putResponse = HttpUtil.httpPutJSON(putURL, putParam);
         log.info(putResponse.toString());
         // transfer to JavaObject
         Reward result = new Gson().fromJson(putResponse.toString(), Reward.class);

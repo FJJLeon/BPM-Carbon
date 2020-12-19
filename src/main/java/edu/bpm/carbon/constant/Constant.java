@@ -51,18 +51,20 @@ public class Constant {
     public static final String ER_REWARDINFO = "rewardinfo";
 
     // COM = Company
-    public static final String COM_RESOURCE = "Company";
-    public static final String COM_NAME = "name";
-    public static final String COM_TYPE = "type";
-    public static final String COM_ADDRESS = "address";
-    public static final String COM_PHONE = "phone";
-    public static final String COM_REMAINCE = "remaincarbonemission";
-    public static final String COM_PENDINGORDER = "pendingorder";
-    public static final String COM_ACORDERS = "acceptorders";
-    public static final String COM_RJORDERS = "rejectorders";
+    public static final String COMP_RESOURCE = "Company";
+    public static final String COMP_ID = "id";
+    public static final String COMP_NAME = "name";
+    public static final String COMP_TYPE = "type";
+    public static final String COMP_ADDRESS = "address";
+    public static final String COMP_PHONE = "phone";
+    public static final String COMP_REMAINCE = "remaincarbonemission";
+    public static final String COMP_PENDINGORDER = "pendingorder";
+    public static final String COMP_ACORDERS = "acceptorders";
+    public static final String COMP_RJORDERS = "rejectorders";
 
     // CO = Carbonorder
     public static final String CARBOD_RESOURCE = "Carbonorder";
+    public static final String CARBOD_ID = "id";
     public static final String CARBOD_COMPID = "companyid";
     public static final String CARBOD_AMOUNT = "amount";
     public static final String CARBOD_UNITPRICE = "unitprice";

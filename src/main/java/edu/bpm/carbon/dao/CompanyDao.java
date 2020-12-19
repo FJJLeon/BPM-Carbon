@@ -22,6 +22,8 @@ public interface CompanyDao {
      */
     Company queryCompanyByType(String type);
 
+    // NO POST
+
     /**
      * 修改奖励物品，PUT
      * 如修改 order 信息
