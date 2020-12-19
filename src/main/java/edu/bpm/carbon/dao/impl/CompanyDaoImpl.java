@@ -79,6 +79,7 @@ public class CompanyDaoImpl implements CompanyDao {
             put(Constant.COMP_ADDRESS, company.getAddress());
             put(Constant.COMP_PHONE, company.getPhone());
             put(Constant.COMP_REMAINCE, company.getRemaincarbonemission());
+            put(Constant.COMP_FUNDS, company.getFunds());
             put(Constant.COMP_PENDINGORDER, company.getPendingorder());
             put(Constant.COMP_ACORDERS, company.getAcceptorders());
             put(Constant.COMP_RJORDERS, company.getRejectorders());

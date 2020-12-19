@@ -22,6 +22,8 @@ public class Company {
 
     private long remaincarbonemission;
 
+    private long funds;
+
     /**
      * only one pendingOrder available for each company
      */
@@ -82,6 +84,14 @@ public class Company {
 
     public void setRemaincarbonemission(long remaincarbonemission) {
         this.remaincarbonemission = remaincarbonemission;
+    }
+
+    public long getFunds() {
+        return funds;
+    }
+
+    public void setFunds(long funds) {
+        this.funds = funds;
     }
 
     public CarbonOrder getPendingorder() {

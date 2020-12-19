@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.dao.CarbonOrderDao;
 import edu.bpm.carbon.entity.CarbonOrder;
-import edu.bpm.carbon.entity.Reward;
 import edu.bpm.carbon.utils.httputils.HttpUtil;
 import edu.bpm.carbon.utils.httputils.Map2Param;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +56,7 @@ public class CarbonOrderDaoImpl implements CarbonOrderDao {
             put(Constant.CARBOD_COMPID, carbonOrder.getCompanyid());
             put(Constant.CARBOD_AMOUNT, carbonOrder.getAmount());
             put(Constant.CARBOD_UNITPRICE, carbonOrder.getUnitprice());
-            put(Constant.CARBOD_STATE, carbonOrder.getState());
+            put(Constant.CARBOD_STATUS, carbonOrder.getStatus());
             put(Constant.CARBOD_CREATETIME, carbonOrder.getCreatetime());
             put(Constant.CARBOD_REVIEWTIME, carbonOrder.getReviewtime());
             put(Constant.CARBOD_FROM, carbonOrder.getFromcompany());
@@ -80,7 +79,7 @@ public class CarbonOrderDaoImpl implements CarbonOrderDao {
             put(Constant.CARBOD_COMPID, carbonOrder.getCompanyid());
             put(Constant.CARBOD_AMOUNT, carbonOrder.getAmount());
             put(Constant.CARBOD_UNITPRICE, carbonOrder.getUnitprice());
-            put(Constant.CARBOD_STATE, carbonOrder.getState());
+            put(Constant.CARBOD_STATUS, carbonOrder.getStatus());
             put(Constant.CARBOD_CREATETIME, carbonOrder.getCreatetime());
             put(Constant.CARBOD_REVIEWTIME, carbonOrder.getReviewtime());
             put(Constant.CARBOD_FROM, carbonOrder.getFromcompany());

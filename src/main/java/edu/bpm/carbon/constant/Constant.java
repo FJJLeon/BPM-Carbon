@@ -58,6 +58,7 @@ public class Constant {
     public static final String COMP_ADDRESS = "address";
     public static final String COMP_PHONE = "phone";
     public static final String COMP_REMAINCE = "remaincarbonemission";
+    public static final String COMP_FUNDS = "funds";
     public static final String COMP_PENDINGORDER = "pendingorder";
     public static final String COMP_ACORDERS = "acceptorders";
     public static final String COMP_RJORDERS = "rejectorders";
@@ -68,9 +69,13 @@ public class Constant {
     public static final String CARBOD_COMPID = "companyid";
     public static final String CARBOD_AMOUNT = "amount";
     public static final String CARBOD_UNITPRICE = "unitprice";
-    public static final String CARBOD_STATE = "state";
+    public static final String CARBOD_STATUS = "status";
     public static final String CARBOD_CREATETIME = "createtime";
     public static final String CARBOD_REVIEWTIME = "reviewtime";
     public static final String CARBOD_FROM = "fromcompany";
+    // Order Status
+    public static final String ODSTATUS_PENDING = "pending";
+    public static final String ODSTATUS_ACCEPT = "accept";
+    public static final String ODSTATUS_REJECT = "reject";
 
 }

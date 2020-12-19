@@ -15,7 +15,11 @@ public class CarbonOrder {
     // RMB per kg
     private double unitprice;
 
-    private String state;
+    /**
+     * operation == status
+     * pending, accept, reject
+     */
+    private String status;
 
     private String createtime;
 
@@ -62,12 +66,12 @@ public class CarbonOrder {
         this.unitprice = unitprice;
     }
 
-    public String getState() {
-        return state;
+    public String getStatus() {
+        return status;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getCreatetime() {
