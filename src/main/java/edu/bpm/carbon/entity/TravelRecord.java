@@ -9,6 +9,8 @@ public class TravelRecord {
 
     private long userid;
 
+    private String username;
+
     private String vehicletype;
 
     private String starttime;
@@ -17,9 +19,11 @@ public class TravelRecord {
 
     private int isfinished;
 
-    private String username;
-
     private int credit;
+
+    public TravelRecord() {
+
+    }
 
     public TravelRecord(long userid, String vehicletype, int isfinished) {
         this.userid = userid;

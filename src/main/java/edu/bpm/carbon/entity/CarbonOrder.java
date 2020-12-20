@@ -8,11 +8,12 @@ public class CarbonOrder {
 
     private long companyid;
 
-    private Company fromcompany;
+    private String companyname;
 
+    // 吨
     private long amount;
 
-    // RMB per kg
+    // RMB 厘 / kg == 元 / 吨
     private double unitprice;
 
     /**
@@ -42,12 +43,12 @@ public class CarbonOrder {
         this.companyid = companyid;
     }
 
-    public Company getFromcompany() {
-        return fromcompany;
+    public String getCompanyname() {
+        return companyname;
     }
 
-    public void setFromcompany(Company fromcompany) {
-        this.fromcompany = fromcompany;
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
     }
 
     public long getAmount() {

@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
          *     ]
          * }
          * */
-        JSONArray userFound = checkUser.getJSONArray("Testuser");
+        JSONArray userFound = checkUser.getJSONArray(Constant.USER_RESOURCE);
 
         if (userFound != null && userFound.size() == 1) {
             JSONObject jsonUser = userFound.getJSONObject(0);

@@ -4,12 +4,13 @@ package edu.bpm.carbon.service.credit;
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.entity.TravelRecord;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Repository
+@Service
 public class CreditService {
     public enum VEHICLE_TYPE{
         BIKE(Constant.VEHICLETYPE_BIKE),

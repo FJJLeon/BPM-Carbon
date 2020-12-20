@@ -49,21 +49,43 @@ public class CarbonOrderDaoImpl implements CarbonOrderDao {
     }
 
     @Override
+    public List<CarbonOrder> queryCarbonOrderByCompanyId(long companyId) {
+        log.info("queryCarbonOrderByCompanyId: companyId=[{}]", companyId);
+
+        List<CarbonOrder> carbonOrders = queryCarbonOrder(new HashMap<String, Object>(){{
+            put(Constant.CARBOD_COMPID, companyId);
+        }});
+
+        return carbonOrders;
+    }
+
+    @Override
+    public List<CarbonOrder> queryCarbonOrderByStatus(String status) {
+        log.info("queryCarbonOrderByStatus: stauts = [{}]", status);
+
+        List<CarbonOrder> carbonOrders = queryCarbonOrder(new HashMap<String, Object>(){{
+            put(Constant.CARBOD_STATUS, status);
+        }});
+
+        return carbonOrders;
+    }
+
+    @Override
     public CarbonOrder postCarbonOrder(CarbonOrder carbonOrder) {
         log.info("postCarbonOrder: [{}]", carbonOrder.toString());
         // construct param map
         Map<String, Object> postParam = new HashMap<String, Object>(){{
             put(Constant.CARBOD_COMPID, carbonOrder.getCompanyid());
+            put(Constant.CARBOD_COMPNAME, carbonOrder.getCompanyname());
             put(Constant.CARBOD_AMOUNT, carbonOrder.getAmount());
             put(Constant.CARBOD_UNITPRICE, carbonOrder.getUnitprice());
             put(Constant.CARBOD_STATUS, carbonOrder.getStatus());
             put(Constant.CARBOD_CREATETIME, carbonOrder.getCreatetime());
             put(Constant.CARBOD_REVIEWTIME, carbonOrder.getReviewtime());
-            put(Constant.CARBOD_FROM, carbonOrder.getFromcompany());
         }};
         // post request
         JSONObject postResponse = HttpUtil.httpPostJSON(CARBOD_URL, postParam);
-        log.info(postResponse.toString());
+        log.info("postResponse： {}", postResponse.toString());
         // transfer to JavaObject
         CarbonOrder result = new Gson().fromJson(postResponse.toString(), CarbonOrder.class);
 
@@ -77,16 +99,16 @@ public class CarbonOrderDaoImpl implements CarbonOrderDao {
         Map<String, Object> putParam = new HashMap<String, Object>(){{
             put(Constant.CARBOD_ID, carbonOrder.getId());
             put(Constant.CARBOD_COMPID, carbonOrder.getCompanyid());
+            put(Constant.CARBOD_COMPNAME, carbonOrder.getCompanyname());
             put(Constant.CARBOD_AMOUNT, carbonOrder.getAmount());
             put(Constant.CARBOD_UNITPRICE, carbonOrder.getUnitprice());
             put(Constant.CARBOD_STATUS, carbonOrder.getStatus());
             put(Constant.CARBOD_CREATETIME, carbonOrder.getCreatetime());
             put(Constant.CARBOD_REVIEWTIME, carbonOrder.getReviewtime());
-            put(Constant.CARBOD_FROM, carbonOrder.getFromcompany());
         }};
         // post request
         String putURL = CARBOD_URL + carbonOrder.getId();
-        JSONObject putResponse = HttpUtil.httpPostJSON(putURL, putParam);
+        JSONObject putResponse = HttpUtil.httpPutJSON(putURL, putParam);
         log.info(putResponse.toString());
         // transfer to JavaObject
         CarbonOrder result = new Gson().fromJson(putResponse.toString(), CarbonOrder.class);

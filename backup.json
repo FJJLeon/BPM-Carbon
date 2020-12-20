@@ -1,0 +1,103 @@
+{
+    "UserDesc" : [
+        {
+            "university" : "SJTU",
+            "dorm" : "X36",
+            "lab" : 5403
+        },
+        {
+            "university" : "SJTU",
+            "dorm" : "X36",
+            "lab" : 3503
+        }
+    ],
+    "User" : [
+        {
+            "username" : "zzt",
+            "password" : 123,
+            "age" : 23,
+            "gender" : 1,
+            "credit" : 100000,
+            "istraveling" : 0,
+            "userdesc" : {
+                "id" : 1608476068137
+            }
+        }
+    ],
+    "Company" : [
+        {
+            "name" : "Hellobike",
+            "type" : "bike",
+            "address" : "Shanghai, China",
+            "phone" : "021-61679500",
+            "remaincarbonemission" : 200000000,
+            "funds" : 50000000
+        },
+        {
+            "name" : "Shanghai Bus",
+            "type" : "bus",
+            "address" : "Shanghai, China",
+            "phone" : "12319",
+            "remaincarbonemission" : 300000000,
+            "funds" : 80000000
+        },
+        {
+            "name" : "Shanghai Metro",
+            "type" : "subway",
+            "address" : "Shanghai, China",
+            "phone" : "021-64370000",
+            "remaincarbonemission" : 500000000,
+            "funds" : 100000000
+        }
+    ],
+    "Reward" : [
+        {
+            "name" : "CSAPP",
+            "credit" : 180000,
+            "inventory" : 999,
+            "exchanged" : 0,
+            "price" : 180,
+            "image" : "https://carbon-image.oss-cn-shanghai.aliyuncs.com/csapp.jpg"
+        },
+        {
+            "name" : "Effective C++",
+            "credit" : 70000,
+            "inventory" : 999,
+            "exchanged" : 0,
+            "price" : 70,
+            "image" : "https://carbon-image.oss-cn-shanghai.aliyuncs.com/effective-cpp.jpg"
+        },
+        {
+            "name" : "特级枸杞",
+            "credit" : 90000,
+            "inventory" : 999,
+            "exchanged" : 0,
+            "price" : 90,
+            "image" : "https://carbon-image.oss-cn-shanghai.aliyuncs.com/yidaigouqi.jpg"
+        },
+        {
+            "name" : "天堂伞",
+            "credit" : 30000,
+            "inventory" : 999,
+            "exchanged" : 0,
+            "price" : 32,
+            "image" : "https://carbon-image.oss-cn-shanghai.aliyuncs.com/umbrella.jpg"
+        },
+        {
+            "name" : "霸王洗发水",
+            "credit" : 49000,
+            "inventory" : 999,
+            "exchanged" : 0,
+            "price" : 50,
+            "image" : "https://carbon-image.oss-cn-shanghai.aliyuncs.com/bawangshampoo.jpg"
+        },
+        {
+            "name" : "保温杯",
+            "credit" : 100000,
+            "inventory" : 999,
+            "exchanged" : 0,
+            "price" : 100,
+            "image" : "https://carbon-image.oss-cn-shanghai.aliyuncs.com/baowencup.jpg"
+        }
+    ]
+}

@@ -37,7 +37,7 @@ public class CertificationController {
     public Msg getAcceptOrders() {
         log.info("getAcceptOrders");
 
-        Msg msg = orderService.queryCarbonOrder(new HashMap<String, Object>(){{put(Constant.CARBOD_STATUS, Constant.ODSTATUS_ACCEPT);}});
+        Msg msg = orderService.queryCarbonOrderByStatus(Constant.ODSTATUS_ACCEPT);
 
         return msg;
     }
@@ -46,7 +46,7 @@ public class CertificationController {
     public Msg getRejectOrders() {
         log.info("getRejectOrders");
 
-        Msg msg = orderService.queryCarbonOrder(new HashMap<String, Object>(){{put(Constant.CARBOD_STATUS, Constant.ODSTATUS_REJECT);}});
+        Msg msg = orderService.queryCarbonOrderByStatus(Constant.ODSTATUS_REJECT);
 
         return msg;
     }

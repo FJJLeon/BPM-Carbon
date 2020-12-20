@@ -22,6 +22,13 @@ public interface CompanyDao {
      */
     Company queryCompanyByType(String type);
 
+    /**
+     * 通过 Id 查询公司，GET
+     * @param companyId 公司Id
+     * @return 查询结果，对应 Id 的公司
+     */
+    Company queryCompanyById(long companyId);
+
     // NO POST
 
     /**

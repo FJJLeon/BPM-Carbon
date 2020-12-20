@@ -59,12 +59,26 @@ public class CompanyDaoImpl implements CompanyDao {
         JSONArray companyFound = jsonObject.getJSONArray(Constant.COMP_RESOURCE);
 
         if (companyFound != null && companyFound.size() != 1) {
-            log.warn("Something wrong in RMP Company Resource");
             JSONObject jsonCompany = companyFound.getJSONObject(0);
             return new Gson().fromJson(jsonCompany.toString(), Company.class);
         }
         else {
+            log.warn("Something wrong in RMP Company Resource");
             return new Company();
+        }
+    }
+
+    @Override
+    public Company queryCompanyById(long companyId) {
+        log.info("queryCompanyById: companyId=[{}]", companyId);
+
+        List<Company> companies = queryCompany(new HashMap<String, Object>(){{put(Constant.COMP_ID, companyId);}});
+        if (companies.size() != 1) {
+            log.warn("Something wrong in RMP Company Resource");
+            return new Company();
+        }
+        else {
+            return companies.get(0);
         }
     }
 

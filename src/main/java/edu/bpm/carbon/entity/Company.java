@@ -20,8 +20,14 @@ public class Company {
 
     private String phone;
 
+    /**
+     * 单位, g
+     */
     private long remaincarbonemission;
 
+    /**
+     * 单位， 厘
+     */
     private long funds;
 
     /**

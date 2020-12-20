@@ -1,7 +1,7 @@
 package edu.bpm.carbon.constant;
 
 public class Constant {
-    public static final String USER_RESOURCE = "Testuser";
+    public static final String USER_RESOURCE = "User";
     public static final String USER_ID = "id";
     public static final String USER_NAME = "username";
     public static final String USER_PASSWORD = "password";
@@ -67,12 +67,12 @@ public class Constant {
     public static final String CARBOD_RESOURCE = "Carbonorder";
     public static final String CARBOD_ID = "id";
     public static final String CARBOD_COMPID = "companyid";
+    public static final String CARBOD_COMPNAME = "companyname";
     public static final String CARBOD_AMOUNT = "amount";
     public static final String CARBOD_UNITPRICE = "unitprice";
     public static final String CARBOD_STATUS = "status";
     public static final String CARBOD_CREATETIME = "createtime";
     public static final String CARBOD_REVIEWTIME = "reviewtime";
-    public static final String CARBOD_FROM = "fromcompany";
     // Order Status
     public static final String ODSTATUS_PENDING = "pending";
     public static final String ODSTATUS_ACCEPT = "accept";
