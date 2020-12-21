@@ -20,7 +20,7 @@ public class CertificationController {
     @Autowired
     CarbonOrderService orderService;
 
-    @PostMapping(value = "reviewOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/reviewOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Msg reviewOrder(@RequestBody CarbonOrder carbonOrder) {
         log.info("reviewOrder: carbonOrder = [{}]", carbonOrder.toString());
 
@@ -33,7 +33,16 @@ public class CertificationController {
         return msg;
     }
 
-    @GetMapping(value = "getAcceptOrders")
+    @GetMapping(value = "/getPendingOrders")
+    public Msg getPendingOrders() {
+        log.info("getPendingOrders");
+
+        Msg msg = orderService.queryCarbonOrderByStatus(Constant.ODSTATUS_PENDING);
+
+        return msg;
+    }
+
+    @GetMapping(value = "/getAcceptOrders")
     public Msg getAcceptOrders() {
         log.info("getAcceptOrders");
 
@@ -42,7 +51,7 @@ public class CertificationController {
         return msg;
     }
 
-    @GetMapping(value = "getRejectOrders")
+    @GetMapping(value = "/getRejectOrders")
     public Msg getRejectOrders() {
         log.info("getRejectOrders");
 

@@ -49,4 +49,15 @@ public class CompanyController {
 
         return msg;
     }
+
+    @PostMapping(value = "/getOrders", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Msg getCompanyOrders(@RequestBody Company company) {
+        log.info("getCompanyOrder: company = [{}]", company.toString());
+
+        Assert.isTrue(company.getId() != 0, "getOrders companyId missing");
+
+        Msg msg = orderService.queryCarbonOrderByCompany(company.getId());
+
+        return msg;
+    }
 }
