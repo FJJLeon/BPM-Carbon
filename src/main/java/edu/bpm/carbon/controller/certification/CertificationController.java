@@ -3,6 +3,8 @@ package edu.bpm.carbon.controller.certification;
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.entity.CarbonOrder;
 import edu.bpm.carbon.service.CarbonOrderService;
+import edu.bpm.carbon.service.certification.CertificationService;
+import edu.bpm.carbon.service.credit.CreditService;
 import edu.bpm.carbon.utils.msgutils.Msg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class CertificationController {
     @Autowired
     CarbonOrderService orderService;
 
+    @Autowired
+    CertificationService certificationService;
+
     @PostMapping(value = "/reviewOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Msg reviewOrder(@RequestBody CarbonOrder carbonOrder) {
         log.info("reviewOrder: carbonOrder = [{}]", carbonOrder.toString());
@@ -29,6 +34,15 @@ public class CertificationController {
         Assert.isTrue(carbonOrder.getStatus() != "", "carbonOrder operation/status missing");
 
         Msg msg = orderService.reviewCarbonOrder(carbonOrder.getId(), carbonOrder.getCompanyid(), carbonOrder.getStatus());
+
+        return msg;
+    }
+
+    @GetMapping(value = "/getCarbonUnitPrice")
+    public Msg getCarbonUnitPrice() {
+        log.info("getCarbonUnitPrice");
+
+        Msg msg = certificationService.getCarbonUnitPriceService();
 
         return msg;
     }

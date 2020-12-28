@@ -53,18 +53,14 @@ public class CompanyDaoImpl implements CompanyDao {
     public Company queryCompanyByType(String type) {
         log.info("queryCompanyByType: type=[{}]", type);
 
-        String param = String.format("%s.%s=%s",
-                Constant.COMP_RESOURCE, Constant.COMP_TYPE, type);
-        JSONObject jsonObject = HttpUtil.httpGetJSON(COMP_URL, param);
-        JSONArray companyFound = jsonObject.getJSONArray(Constant.COMP_RESOURCE);
+        List<Company> companies = queryCompany(new HashMap<String, Object>(){{put(Constant.COMP_TYPE, type);}});
 
-        if (companyFound != null && companyFound.size() != 1) {
-            JSONObject jsonCompany = companyFound.getJSONObject(0);
-            return new Gson().fromJson(jsonCompany.toString(), Company.class);
-        }
-        else {
+        if (companies.size() != 1) {
             log.warn("Something wrong in RMP Company Resource");
             return new Company();
+        }
+        else {
+            return companies.get(0);
         }
     }
 
