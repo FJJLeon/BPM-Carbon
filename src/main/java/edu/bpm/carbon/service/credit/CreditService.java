@@ -85,10 +85,12 @@ public class CreditService {
      */
     public void consumeCE(int diffMin, String type) {
         Company company = companyDao.queryCompanyByType(type);
-
+        // company Dao 减少碳排放量
         long consumed = diffMin * DecEmissionPerMin.get(type);
         company.setRemaincarbonemission(company.getRemaincarbonemission() - consumed);
         companyDao.putCompany(company);
+        // 把减排量上传到 mongoDB
+        recordConsumeToFluctuation(consumed);
     }
 
     /**

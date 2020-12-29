@@ -72,7 +72,7 @@ public class TravelRecordServiceImpl implements TravelRecordService {
         // user dao update
         u.addTravelrecords(tr);
         User updateU = userDao.putUser(u);
-        log.info("insert travel record to user: {}", updateU.toString());
+        log.info("insert travel record to user: {}", updateU.getUsername());
 
         return MsgUtil.makeMsg(MsgCode.SUCCESS, "开始出行", jsonObject);
     }
@@ -119,7 +119,7 @@ public class TravelRecordServiceImpl implements TravelRecordService {
         u.setIstraveling(0);
         // user dao put
         User updatedU = userDao.putUser(u);
-        log.info("endTravel updated user: {}", updatedU.toString());
+        log.info("endTravel updated user: {}", updatedU.getUsername());
 
         return MsgUtil.makeMsg(MsgCode.SUCCESS, "结束出行", jsonObject);
     }

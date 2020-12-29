@@ -150,6 +150,7 @@ public class CarbonOrderServiceImpl implements CarbonOrderService {
 
             // get unitPrice and deduct funds
             // unitPrice 厘/kg == 元/吨
+            certService.fluctuateUnitPrice();
             double up = certService.getCarbonUnitPrice();
             double totalPriceInLi = up * co.getAmount() * 1000;
             int totalLi = (int) totalPriceInLi;

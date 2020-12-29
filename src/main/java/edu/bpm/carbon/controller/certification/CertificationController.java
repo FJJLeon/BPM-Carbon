@@ -47,8 +47,6 @@ public class CertificationController {
 
         Msg msg = certificationService.getCarbonUnitPriceService();
 
-        creditService.recordConsumeToFluctuation(500);
-
         return msg;
     }
 
