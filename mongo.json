@@ -10,9 +10,8 @@
       "count" : 2
     }
   ]
+},{
+  "consumed_emission" : 0,
+  "exchanged_credit" : 0,
+  "exchanged_total_price" : 0
 }]
-
-
-[{"credit":180000,"exchanged":0,"id":1608479407495,"image":"https://carbon-image.oss-cn-shanghai.aliyuncs.com/csapp.jpg","inventory":999,"name":"CSAPP","price":180.0}, {"credit":70000,"exchanged":1,"id":1608479528139,"image":"https://carbon-image.oss-cn-shanghai.aliyuncs.com/effective-cpp.jpg","inventory":998,"name":"Effective C++","price":70.0}, {"credit":100000,"exchanged":0,"id":1608479578501,"image":"https://carbon-image.oss-cn-shanghai.aliyuncs.com/baowencup.jpg","inventory":999,"name":"保温杯","price":100.0}, {"credit":49000,"exchanged":0,"id":1608479614229,"image":"https://carbon-image.oss-cn-shanghai.aliyuncs.com/bawangshampoo.jpg","inventory":999,"name":"霸王洗发水","price":50.0}, {"credit":30000,"exchanged":0,"id":1608479681984,"image":"https://carbon-image.oss-cn-shanghai.aliyuncs.com/umbrella.jpg","inventory":999,"name":"天堂伞","price":32.0}, {"credit":90000,"exchanged":0,"id":1608479741937,"image":"https://carbon-image.oss-cn-shanghai.aliyuncs.com/yidaigouqi.jpg","inventory":999,"name":"特级枸杞","price":90.0}]
-{"id":{"date":1609158974000,"timestamp":1609158974},"rewardCounts":[{"count":3,"rewardId":1608479407495},{"count":2,"rewardId":1608479528139},{"count":4,"rewardId":1608479578501}],"userId":1608476525630}
-{"id":{"date":1609158974000,"timestamp":1609158974},"rewardCounts":[{"count":4,"rewardId":1608479578501},{"count":3,"rewardId":1608479407495},{"count":2,"rewardId":1608479528139}],"userId":1608476525630}

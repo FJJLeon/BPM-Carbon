@@ -3,11 +3,13 @@ package edu.bpm.carbon.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.dao.ExchangeRewardDao;
+import edu.bpm.carbon.dao.FluctuationDao;
 import edu.bpm.carbon.dao.RewardDao;
 import edu.bpm.carbon.dao.UserDao;
 import edu.bpm.carbon.entity.ExchangeRecord;
 import edu.bpm.carbon.entity.Reward;
 import edu.bpm.carbon.entity.User;
+import edu.bpm.carbon.entity.mongo.Fluctuation;
 import edu.bpm.carbon.service.ExchangeService;
 import edu.bpm.carbon.utils.msgutils.Msg;
 import edu.bpm.carbon.utils.msgutils.MsgCode;
@@ -33,6 +35,9 @@ public class ExchangeServiceImpl implements ExchangeService {
 
     @Autowired
     ExchangeRewardDao exchangeRewardDao;
+
+    @Autowired
+    FluctuationDao fluctuationDao;
 
     @Override
     public Msg queryExchangeRecord(Map<String, Object> params) {
@@ -98,6 +103,12 @@ public class ExchangeServiceImpl implements ExchangeService {
         reward.exchange(quantity);
         reward = rewardDao.putReward(reward);
         log.info("update reward: [{}]",reward.toString());
+
+        // 记录到 价格波动所需中
+        Fluctuation fluctuation = fluctuationDao.findOneFluctuation();
+        fluctuation.addExchangedCredit(creditneed);
+        fluctuation.addExchangedTotalPrice(quantity * reward.getPrice());
+        fluctuationDao.updateFluctuation(fluctuation);
 
         return MsgUtil.makeMsg(MsgCode.SUCCESS, "兑换成功", (JSONObject) JSONObject.toJSON(result));
     }

@@ -25,6 +25,9 @@ public class CertificationController {
     @Autowired
     CertificationService certificationService;
 
+    @Autowired
+    CreditService creditService;
+
     @PostMapping(value = "/reviewOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Msg reviewOrder(@RequestBody CarbonOrder carbonOrder) {
         log.info("reviewOrder: carbonOrder = [{}]", carbonOrder.toString());
@@ -43,6 +46,8 @@ public class CertificationController {
         log.info("getCarbonUnitPrice");
 
         Msg msg = certificationService.getCarbonUnitPriceService();
+
+        creditService.recordConsumeToFluctuation(500);
 
         return msg;
     }

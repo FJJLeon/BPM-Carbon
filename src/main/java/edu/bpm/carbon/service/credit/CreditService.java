@@ -3,8 +3,11 @@ package edu.bpm.carbon.service.credit;
 
 import edu.bpm.carbon.constant.Constant;
 import edu.bpm.carbon.dao.CompanyDao;
+import edu.bpm.carbon.dao.FluctuationDao;
 import edu.bpm.carbon.entity.Company;
 import edu.bpm.carbon.entity.TravelRecord;
+import edu.bpm.carbon.entity.mongo.Fluctuation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,7 @@ import java.util.Map;
  * 积分与减排相关
  */
 @Service
+@Slf4j
 public class CreditService {
     public enum VEHICLE_TYPE{
         BIKE(Constant.VEHICLETYPE_BIKE),
@@ -36,6 +40,9 @@ public class CreditService {
 
     @Autowired
     CompanyDao companyDao;
+
+    @Autowired
+    FluctuationDao fluctuationDao;
 
     /**
      * 各出行工具类型每分钟能获取的积分数量，单位：个
@@ -78,7 +85,23 @@ public class CreditService {
      */
     public void consumeCE(int diffMin, String type) {
         Company company = companyDao.queryCompanyByType(type);
-        company.setRemaincarbonemission(company.getRemaincarbonemission() - diffMin * DecEmissionPerMin.get(type));
+
+        long consumed = diffMin * DecEmissionPerMin.get(type);
+        company.setRemaincarbonemission(company.getRemaincarbonemission() - consumed);
         companyDao.putCompany(company);
+    }
+
+    /**
+     * 用于价格波动
+     * @param consumed 新增的 减排量
+     */
+    public void recordConsumeToFluctuation(long consumed) {
+        Fluctuation fluctuation = fluctuationDao.findOneFluctuation();
+
+        log.info("fluction: [{}]", fluctuation.toString());
+        fluctuation.addConsumedEmission(consumed);
+
+        fluctuationDao.updateFluctuation(fluctuation);
+        return;
     }
 }
